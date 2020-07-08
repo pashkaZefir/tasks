@@ -9,7 +9,7 @@ create table if not exists `tasks` (
     , `changed` tinyint(1) not null default '0'
 );
 
-drop trigger `tasks-update`;
+drop trigger if exists `tasks-update`;
 delimiter $$
 create trigger `tasks-update` before update on `tasks` for each row
 begin
