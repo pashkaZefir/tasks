@@ -28,6 +28,10 @@ class Task extends Base
     /** @property string $description */
     public $description = null;
 
+    protected static function filterValues($var){
+        return ($var !== NULL && $var !== FALSE && $var !== '');
+    }
+
     public static function select(int $page, array $filters = null, string $sort = null)
     {
         $page = max(1, (int)$page);
@@ -65,7 +69,7 @@ class Task extends Base
         $fields = get_object_vars($this);
         unset($fields['id']);
 
-        list($fields, $values) = DB::mapValues(array_filter($fields, 'is_numeric'), ',');
+        list($fields, $values) = DB::mapValues(array_filter($fields, 'static::filterValues'), ',');
         $values[] = $this->id;
         return DB::exec("update `" . static::$tableName . "` set $fields where id = ?", $values);
     }
