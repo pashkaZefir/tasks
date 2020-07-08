@@ -4,7 +4,7 @@ create table if not exists `tasks` (
     `id` bigint(20) unsigned not null auto_increment primary key
     , `username` varchar(255) not null
     , `email` varchar(255) not null
-    , `description` varchar(255)
+    , `description` text
     , `ready` tinyint(1) not null default '0'
     , `changed` tinyint(1) not null default '0'
 );

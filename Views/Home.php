@@ -51,7 +51,11 @@ if (isset($page) && !empty($page)) {
                 <th scope="row"><?= $task->id ?></th>
                 <td><?= htmlspecialchars($task->username) ?></td>
                 <td><?= $task->email ?></td>
-                <td><?= htmlspecialchars($task->description) ?></td>
+                <td>
+                    <span class="d-inline-block text-truncate" style="max-width: 150px">
+                      <?= htmlspecialchars($task->description) ?>
+                    </span>
+                </td>
                 <td>
                     <?php if ($task->ready) { ?>
                         <span class="badge badge-success">Выполнено</span>
